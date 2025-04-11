@@ -106,7 +106,7 @@ Content-Type: application/json
 - Delete Student  
 
 📷 **Screenshot STUDENT:**  
-![STUDENT](https://github.com/farul1/donasibarang-api/tree/main/public/foto/student.png)
+![STUDENT](https://github.com/farul1/Belajar_API/blob/main/public/foto/student.png)
 
 ---
 

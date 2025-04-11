@@ -1,4 +1,4 @@
-# 📘 Aplikasi Manajemen Mahasiswa - RESTful API
+# 📘 Aplikasi Students - RESTful API
 
 Sistem backend **RESTful API** untuk aplikasi **Manajemen Mahasiswa**, sebuah platform sederhana yang memungkinkan user untuk mengelola data mahasiswa (student) secara aman dan efisien.
 

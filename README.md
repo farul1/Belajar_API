@@ -94,7 +94,7 @@ Content-Type: application/json
 - Token Check
 
 📷 **Screenshot AUTH:**  
-![AUTH](https://github.com/farul1/donasibarang-api/tree/main/public/foto/auth.png)
+![AUTH](https://github.com/farul1/Belajar_API/blob/main/public/foto/auth.png)
 
 ---
 

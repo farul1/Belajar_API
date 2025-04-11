@@ -1,66 +1,119 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📘 Aplikasi Manajemen Mahasiswa - RESTful API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem backend **RESTful API** untuk aplikasi **Manajemen Mahasiswa**, sebuah platform sederhana yang memungkinkan user untuk mengelola data mahasiswa (student) secara aman dan efisien.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🧾 Tentang Proyek
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Aplikasi ini dirancang menggunakan **Laravel** dan menggunakan **JWT Authentication** untuk mengamankan endpoint yang sensitif. Fitur utama mencakup:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Autentikasi pengguna (register, login, logout, cek token).
+- CRUD mahasiswa (create, read, update, delete).
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ⚙️ Fitur Utama
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 🔐 **Autentikasi Pengguna**
+  - Register, Login, Logout, dan Cek Token.
+- 🧑‍🎓 **Manajemen Mahasiswa (Student)**
+  - Tambah, lihat, ubah, dan hapus data mahasiswa.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🧱 Struktur API
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+├── AUTH
+│   ├── POST   /register     -> Register user
+│   ├── POST   /login        -> Login user
+│   ├── GET    /me           -> Ambil data user dari token
+│   └── POST   /logout       -> Logout user
+│
+└── STUDENTS (Protected by JWT)
+    ├── GET    /students              -> Lihat semua mahasiswa
+    ├── GET    /students/{id}         -> Lihat detail mahasiswa
+    ├── POST   /students              -> Tambah data mahasiswa
+    ├── PUT    /students/{id}         -> Update data mahasiswa
+    └── DELETE /students/{id}         -> Hapus data mahasiswa
+```
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## 🔐 Autentikasi
 
-## Contributing
+Gunakan JWT (JSON Web Token) setelah login untuk mengakses endpoint mahasiswa.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🔑 Login
+```http
+POST /login
+Content-Type: application/json
 
-## Code of Conduct
+{
+  "email": "user@mail.com",
+  "password": "password123"
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Response:
+```json
+{
+  "message": "Login berhasil",
+  "token": "eyJhbGciOiJIUzI1NiIsInR..."
+}
+```
+Tambahkan token ini pada header setiap permintaan yang dilindungi:
+```
+Authorization: Bearer <token>
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 💡 Contoh Request - Tambah Mahasiswa
+```http
+POST /students
+Authorization: Bearer <token>
+Content-Type: application/json
 
-## License
+{
+  "name": "Budi Santoso",
+  "email": "budi@student.com",
+  "phone": "081234567890"
+}
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🖼️ Dokumentasi API (Postman)
+
+### 1. 🔐 AUTH - Autentikasi
+- Register
+- Login
+- Logout
+- Token Check
+
+📷 **Screenshot AUTH:**  
+![AUTH](https://github.com/farul1/donasibarang-api/blob/main/public/foto/auth.png)
+
+---
+
+### 2. 🧑‍🎓 STUDENT - Manajemen Mahasiswa
+- List all Student  
+- Get Student by ID  
+- Create Student  
+- Update Student  
+- Delete Student  
+
+📷 **Screenshot STUDENT:**  
+![STUDENT](https://github.com/farul1/donasibarang-api/blob/main/public/foto/students.png)
+
+---
+
+## 👤 Developer
+
+- **Nama**: Syafarul Priwantoro
+- **NIM**: 1204220018
+- **Universitas**: Telkom University Surabaya
+- **Mata Kuliah**: INTEGRASI APLIKASI ENTERPRISE
+

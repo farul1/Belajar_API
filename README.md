@@ -94,7 +94,7 @@ Content-Type: application/json
 - Token Check
 
 📷 **Screenshot AUTH:**  
-![AUTH](https://github.com/farul1/donasibarang-api/blob/main/public/foto/auth.png)
+![AUTH](https://github.com/farul1/Belajar_API/tree/main/public/foto/auth.png)
 
 ---
 
@@ -106,7 +106,7 @@ Content-Type: application/json
 - Delete Student  
 
 📷 **Screenshot STUDENT:**  
-![STUDENT](https://github.com/farul1/donasibarang-api/blob/main/public/foto/students.png)
+![STUDENT](https://github.com/farul1/Belajar_API/tree/main/public/foto/students.png)
 
 ---
 
